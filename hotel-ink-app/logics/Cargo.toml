@@ -1,0 +1,31 @@
+[package]
+name = "hotel_app_extension_pkg"
+version = "1.0.0"
+authors = ["duscae047@gmail.com"]
+edition = "2021"
+
+[dependencies]
+ink = { version = "4.1.0", default-features = false}
+
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+scale-info = { version = "2.3", default-features = false, features = ["derive"], optional = true }
+
+openbrush = { tag = "3.1.0", git = "https://github.com/727-Ventures/openbrush-contracts", default-features = false, features = ["psp34", "ownable"] }
+hotel_sbt = { path = "../../hotel-ink-sbt/contracts/hotel_sbt", default-features = false, features = ["ink-as-dependency"] }
+
+[lib]
+path = "lib.rs"
+crate-type = ["rlib"]
+
+[features]
+default = ["std"]
+std = [
+    "ink/std",
+    "scale/std",
+    "scale-info",
+    "scale-info/std",
+
+    "openbrush/std",
+    "hotel_sbt/std"
+]
+ink-as-dependency = []
